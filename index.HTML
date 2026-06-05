@@ -30,7 +30,8 @@
 
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
-    padding:18px 60px;background:rgba(5,10,15,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    padding:18px 60px;background:rgba(5,10,15,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);gap:32px}
+  .nav-actions{margin-left:auto}
   .logo{display:flex;align-items:center;gap:14px}
   .logo-mark{width:40px;height:40px;background:var(--green);
     clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
@@ -39,12 +40,18 @@
   .logo-text{display:flex;flex-direction:column;line-height:1}
   .logo-text .brand{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--text)}
   .logo-text .sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green);letter-spacing:2px}
-  nav ul{display:flex;gap:36px;list-style:none}
-  nav a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.5px;transition:color .2s}
+  nav ul{display:flex;gap:28px;list-style:none;flex-wrap:nowrap}
+  nav a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.5px;transition:color .2s;white-space:nowrap}
   nav a:hover{color:var(--green)}
-  .nav-cta{background:var(--green);color:#050a0f;padding:9px 22px;border-radius:4px;
-    font-weight:600;font-size:13px;text-decoration:none;transition:background .2s,transform .15s}
-  .nav-cta:hover{background:var(--green2);transform:translateY(-1px)}
+  .nav-actions{display:flex;align-items:center;gap:10px;margin-left:auto}
+  .nav-cta{padding:9px 22px;border-radius:4px;
+    font-weight:600;font-size:13px;text-decoration:none;transition:all .2s;white-space:nowrap;display:inline-flex;align-items:center}
+  .nav-buy-now{background:transparent;border:1px solid var(--green);color:var(--green)}
+  .nav-buy-now:hover{background:rgba(0,229,160,.1);color:var(--green);transform:translateY(-1px)}
+  .nav-try-free{background:transparent;border:2px solid #00ff88;color:#00ff88;font-weight:700}
+  .nav-try-free:hover{background:rgba(0,255,136,.08);color:#00ff88;transform:translateY(-1px)}
+  .nav-get-started{background:var(--green);color:#050a0f}
+  .nav-get-started:hover{background:var(--green2);color:#050a0f;transform:translateY(-1px)}
 
   /* HERO */
   #hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
@@ -409,7 +416,7 @@
   .nav-hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
   .nav-hamburger.active span:nth-child(2){opacity:0}
   .nav-hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-  @media(max-width:900px){.nav-desktop-cta{display:none}}
+  
   .nav-mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(5,10,15,.97);
     backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:99;
     padding:20px 24px;flex-direction:column;gap:4px}
@@ -423,11 +430,24 @@
     margin-top:8px;border-bottom:none!important}
 
   /* RESPONSIVE */
+  @media(max-width:1280px){
+    nav{padding:16px 24px}
+    nav ul{display:none}
+    .nav-hamburger{display:flex}
+    .nav-desktop-cta{display:none!important}
+    .nav-actions{margin-left:auto}
+  }
   @media(max-width:1100px){
     #hero{padding:120px 40px 80px}
     #vofa,#products,#how,#courses,#signals,#why,#cta{padding-left:40px;padding-right:40px}
     footer{padding:60px 40px 36px}
     .stats-bar{margin:0 40px}
+  }
+  @media(max-width:1024px){
+    nav{padding:16px 24px}
+    nav ul{display:none}
+    .nav-hamburger{display:flex}
+    .nav-desktop-cta{display:none!important}
   }
   @media(max-width:900px){
     nav{padding:16px 20px}
@@ -630,59 +650,6 @@
   .dl-success h4{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--gold);margin-bottom:8px}
   .dl-success p{font-size:13px;color:var(--muted);line-height:1.6}
 
-/* DOWNLOADS */
-#downloads{padding:90px 6%;border-top:1px solid var(--border)}
-.downloads-grid{
-  margin-top:28px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:18px;
-}
-.download-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:6px;
-  padding:20px 18px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-.download-card h4{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:24px;
-  letter-spacing:1px;
-  margin:0;
-}
-.download-card p{
-  margin:0;
-  font-size:13px;
-  color:var(--muted);
-  line-height:1.7;
-}
-.download-link{
-  margin-top:auto;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  width:fit-content;
-  border:1px solid var(--border);
-  border-radius:4px;
-  padding:10px 14px;
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-  text-decoration:none;
-  color:var(--text);
-  background:rgba(255,255,255,.01);
-  transition:all .2s ease;
-}
-.download-link:hover{
-  border-color:var(--green);
-  color:var(--green);
-  background:rgba(0,229,160,.06);
-}
-
 </style>
 </head>
 <body>
@@ -705,11 +672,14 @@
     <li><a href="#how">How It Works</a></li>
     <li><a href="#why">Why Us</a></li>
   </ul>
-<a href="javascript:void(0)" class="nav-cta nav-desktop-cta" style="background:transparent;border:1px solid var(--green);color:var(--green);margin-right:10px" onclick="scrollToPricing()">Buy Now</a>
-<a href="#cta" class="nav-cta nav-desktop-cta">Get Started</a>
+<div class="nav-actions">
+  <a href="javascript:void(0)" class="nav-cta nav-desktop-cta nav-buy-now" onclick="scrollToPricing()">Buy Now</a>
+  <a href="#free-trial" class="nav-cta nav-desktop-cta nav-try-free">Try Free →</a>
+  <a href="#cta" class="nav-cta nav-desktop-cta nav-get-started">Get Started</a>
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
     <span></span><span></span><span></span>
   </button>
+</div>
 </nav>
 
 <!-- MOBILE NAV MENU -->
@@ -721,6 +691,7 @@
   <a href="#how" onclick="closeMobileMenu()">How It Works</a>
   <a href="#why" onclick="closeMobileMenu()">Why Us</a>
 <a href="javascript:void(0)" onclick="scrollToPricing();closeMobileMenu()" style="color:var(--green);font-weight:600">Buy Now →</a>
+<a href="#free-trial" onclick="closeMobileMenu()" style="background:transparent;border:2px solid #00ff88;color:#00ff88;font-weight:700;font-size:14px;padding:10px 22px;border-radius:6px;text-decoration:none;text-align:center;">Try Free →</a>
 <a href="#cta" class="nav-mobile-cta" onclick="closeMobileMenu()">Get Started</a>
 </div>
 
@@ -1771,29 +1742,610 @@
     </div>
   </div>
 </section>
+<!-- ============================================================
+     PASTE THESE TWO SECTIONS INTO YOUR index.html
+     Place them BEFORE the closing </main> or before your footer/CTA section
+     ============================================================ -->
 
-<!-- DOWNLOADS -->
-<section id="downloads">
-  <div class="sec-header fade-up">
-    <span class="sec-tag">Resources</span>
-    <h2>DOWNLOADS</h2>
-    <p class="sec-desc">Get the official VOFA guides and manuals in one place.</p>
-  </div>
-  <div class="downloads-grid fade-up">
-    <div class="download-card">
-      <h4>VSABlueprint User Manual</h4>
-      <p>Core reference guide covering usage guidelines.</p>
-      <a class="download-link" href="assets/VSABlueprint_UserManual.pdf" target="_blank" rel="noopener">Open PDF</a>
+
+<!-- ============================================================
+     FIX 1: REPLACE your existing <section id="free-trial"> with this
+     Uses your exact CSS variables — matches site perfectly
+     ============================================================ -->
+
+<section id="free-trial" style="background:var(--bg);padding:110px 60px;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;pointer-events:none;
+    background-image:linear-gradient(rgba(0,229,160,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,160,.03) 1px,transparent 1px);
+    background-size:40px 40px"></div>
+
+  <div style="max-width:1100px;margin:0 auto;position:relative">
+
+    <div class="fade-up" style="margin-bottom:64px">
+      <span class="sec-tag">No Credit Card Required</span>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);
+        letter-spacing:2px;line-height:1;margin-bottom:16px">
+        TRY BEFORE<br><span style="color:var(--green)">YOU BUY</span>
+      </h2>
+      <p style="color:var(--muted);font-size:16px;line-height:1.7;max-width:520px">
+        Get a free 2-day trial of any VOFA indicator — no payment, no risk.
+        Receive your license key instantly and start trading.
+      </p>
     </div>
-   
-    <div class="download-card">
-      <h4>VOFA TPO Chart Guide</h4>
-      <p>Detailed user guide for TPO chart interpretation, session structure, and profile context.</p>
-      <a class="download-link" href="assets/VOFA_TPO_Chart_User_Guide.pdf" target="_blank" rel="noopener">Open PDF</a>
+
+    <!-- Two indicator cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px">
+
+      <!-- VSABlueprint Pro -->
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;overflow:hidden;
+        transition:border-color .2s,box-shadow .3s"
+        onmouseover="this.style.borderColor='rgba(0,229,160,.3)';this.style.boxShadow='0 0 0 1px rgba(0,229,160,.1),0 20px 60px rgba(0,0,0,.5)'"
+        onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+        <div style="height:2px;background:linear-gradient(90deg,var(--green),var(--gold))"></div>
+        <div style="padding:32px">
+          <span style="display:inline-block;background:rgba(0,229,160,.08);border:1px solid rgba(0,229,160,.25);
+            color:var(--green);font-family:'JetBrains Mono',monospace;font-size:9px;
+            letter-spacing:3px;text-transform:uppercase;padding:5px 12px;border-radius:3px;margin-bottom:20px">
+            NinjaTrader 8
+          </span>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1.5px;margin-bottom:10px">
+            VSABlueprint Pro
+          </h3>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:24px">
+            Volume Spread Analysis signals, smart money detection, and trade alerts — all in one indicator.
+          </p>
+          <div style="display:flex;flex-direction:column;gap:0;margin-bottom:28px">
+            <div style="font-size:13px;color:var(--muted);padding:10px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px">
+              <span style="color:var(--green);font-size:11px">→</span> VSA signal detection
+            </div>
+            <div style="font-size:13px;color:var(--muted);padding:10px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px">
+              <span style="color:var(--green);font-size:11px">→</span> Smart money zones
+            </div>
+            <div style="font-size:13px;color:var(--muted);padding:10px 0;display:flex;align-items:center;gap:8px">
+              <span style="color:var(--green);font-size:11px">→</span> Trade alerts & messages
+            </div>
+          </div>
+          <a href="http://api.paratrade.org/license/trial.php?indicator=BP"
+            style="display:block;text-align:center;background:var(--green);color:#050a0f;
+            font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;letter-spacing:.5px;
+            padding:14px 24px;border-radius:4px;text-decoration:none;transition:all .2s"
+            onmouseover="this.style.background='var(--green2)';this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.background='var(--green)';this.style.transform='none'">
+            Start Free Trial →
+          </a>
+        </div>
+      </div>
+
+      <!-- VOFA TPO Chart -->
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;overflow:hidden;
+        transition:border-color .2s,box-shadow .3s"
+        onmouseover="this.style.borderColor='rgba(0,229,160,.3)';this.style.boxShadow='0 0 0 1px rgba(0,229,160,.1),0 20px 60px rgba(0,0,0,.5)'"
+        onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+        <div style="height:2px;background:linear-gradient(90deg,var(--green),var(--gold))"></div>
+        <div style="padding:32px">
+          <span style="display:inline-block;background:rgba(0,229,160,.08);border:1px solid rgba(0,229,160,.25);
+            color:var(--green);font-family:'JetBrains Mono',monospace;font-size:9px;
+            letter-spacing:3px;text-transform:uppercase;padding:5px 12px;border-radius:3px;margin-bottom:20px">
+            NinjaTrader 8
+          </span>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1.5px;margin-bottom:10px">
+            VOFA TPO Chart
+          </h3>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:24px">
+            Full Market Profile with TPO letters, Value Area, POC, and VOFA's proprietary volume overlay.
+          </p>
+          <div style="display:flex;flex-direction:column;gap:0;margin-bottom:28px">
+            <div style="font-size:13px;color:var(--muted);padding:10px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px">
+              <span style="color:var(--green);font-size:11px">→</span> TPO & Market Profile
+            </div>
+            <div style="font-size:13px;color:var(--muted);padding:10px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px">
+              <span style="color:var(--green);font-size:11px">→</span> Value Area & POC
+            </div>
+            <div style="font-size:13px;color:var(--muted);padding:10px 0;display:flex;align-items:center;gap:8px">
+              <span style="color:var(--green);font-size:11px">→</span> Volume profile overlay
+            </div>
+          </div>
+          <a href="http://api.paratrade.org/license/trial.php?indicator=TPO"
+            style="display:block;text-align:center;background:var(--green);color:#050a0f;
+            font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;letter-spacing:.5px;
+            padding:14px 24px;border-radius:4px;text-decoration:none;transition:all .2s"
+            onmouseover="this.style.background='var(--green2)';this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.background='var(--green)';this.style.transform='none'">
+            Start Free Trial →
+          </a>
+        </div>
+      </div>
+
     </div>
+
+    <!-- Trust line + link to paid trials -->
+    <p style="font-size:13px;color:var(--muted);text-align:center;font-family:'JetBrains Mono',monospace;letter-spacing:.5px">
+      2-day trial · One PC · No credit card · Instant license key via email &nbsp;·&nbsp;
+      <a href="#paid-trial" style="color:var(--green);text-decoration:none;font-weight:600">
+        Want more time? View paid trial plans →
+      </a>
+    </p>
+
   </div>
 </section>
 
+
+<!-- ============================================================
+     FIX 2: ADD THIS NEW SECTION after your free-trial section
+     This is the paid trial section with all 6 Razorpay slabs
+     ============================================================ -->
+
+<section id="paid-trial" style="background:var(--bg2);padding:110px 60px;border-top:1px solid var(--border)">
+  <div style="max-width:1100px;margin:0 auto">
+
+    <div class="fade-up" style="margin-bottom:64px">
+      <span class="sec-tag">Extended Access</span>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);
+        letter-spacing:2px;line-height:1;margin-bottom:16px">
+        PAID TRIAL<br><span style="color:var(--green)">PLANS</span>
+      </h2>
+      <p style="color:var(--muted);font-size:16px;line-height:1.7;max-width:560px">
+        Need more time to evaluate? Choose a short-term paid plan for either indicator.
+        One-time payment, instant license key via Razorpay.
+      </p>
+    </div>
+
+    <!-- VSABlueprint Pro Plans -->
+    <div style="margin-bottom:52px">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--text)">VSABlueprint Pro</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;
+          color:var(--green);text-transform:uppercase;background:rgba(0,229,160,.08);
+          border:1px solid rgba(0,229,160,.2);padding:4px 10px;border-radius:3px">NinjaTrader 8</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+
+        <!-- BP 7 days -->
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;overflow:hidden;
+          transition:border-color .2s,transform .2s"
+          onmouseover="this.style.borderColor='rgba(0,229,160,.3)';this.style.transform='translateY(-3px)'"
+          onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+          <div style="height:2px;background:var(--green)"></div>
+          <div style="padding:28px 24px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;
+              color:var(--muted);text-transform:uppercase;margin-bottom:16px">7 Days</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--green);
+              line-height:1;margin-bottom:4px">₹499</div>
+            <div style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;
+              margin-bottom:20px">one-time payment</div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:24px;line-height:1.6">
+              Full access to VSABlueprint Pro for 7 days on one PC.
+            </div>
+            <a href="https://rzp.io/rzp/6Mocmyb" target="_blank"
+              style="display:block;text-align:center;background:var(--green);color:#050a0f;
+              font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;
+              padding:12px;border-radius:4px;text-decoration:none;transition:background .2s"
+              onmouseover="this.style.background='var(--green2)'"
+              onmouseout="this.style.background='var(--green)'">
+              Buy 7-Day Trial →
+            </a>
+          </div>
+        </div>
+
+        <!-- BP 14 days -->
+        <div style="background:var(--panel);border:2px solid rgba(0,229,160,.4);border-radius:6px;overflow:hidden;
+          transition:border-color .2s,transform .2s;position:relative"
+          onmouseover="this.style.transform='translateY(-3px)'"
+          onmouseout="this.style.transform='none'">
+          <div style="height:2px;background:linear-gradient(90deg,var(--green),var(--gold))"></div>
+          <div style="position:absolute;top:16px;right:16px;background:var(--gold);color:#050a0f;
+            font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+            letter-spacing:1px;padding:3px 8px;border-radius:2px">POPULAR</div>
+          <div style="padding:28px 24px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;
+              color:var(--muted);text-transform:uppercase;margin-bottom:16px">14 Days</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--green);
+              line-height:1;margin-bottom:4px">₹999</div>
+            <div style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;
+              margin-bottom:20px">one-time payment</div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:24px;line-height:1.6">
+              Full access to VSABlueprint Pro for 14 days on one PC.
+            </div>
+            <a href="https://rzp.io/rzp/xphUOk3D" target="_blank"
+              style="display:block;text-align:center;background:var(--green);color:#050a0f;
+              font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;
+              padding:12px;border-radius:4px;text-decoration:none;transition:background .2s"
+              onmouseover="this.style.background='var(--green2)'"
+              onmouseout="this.style.background='var(--green)'">
+              Buy 14-Day Trial →
+            </a>
+          </div>
+        </div>
+
+        <!-- BP 30 days -->
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;overflow:hidden;
+          transition:border-color .2s,transform .2s"
+          onmouseover="this.style.borderColor='rgba(0,229,160,.3)';this.style.transform='translateY(-3px)'"
+          onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+          <div style="height:2px;background:var(--green)"></div>
+          <div style="padding:28px 24px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;
+              color:var(--muted);text-transform:uppercase;margin-bottom:16px">30 Days</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--green);
+              line-height:1;margin-bottom:4px">₹1,999</div>
+            <div style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;
+              margin-bottom:20px">one-time payment</div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:24px;line-height:1.6">
+              Full access to VSABlueprint Pro for 30 days on one PC.
+            </div>
+            <a href="https://rzp.io/rzp/e0p6ODUx" target="_blank"
+              style="display:block;text-align:center;background:var(--green);color:#050a0f;
+              font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;
+              padding:12px;border-radius:4px;text-decoration:none;transition:background .2s"
+              onmouseover="this.style.background='var(--green2)'"
+              onmouseout="this.style.background='var(--green)'">
+              Buy 30-Day Trial →
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div style="height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin-bottom:52px"></div>
+
+    <!-- VOFA TPO Chart Plans -->
+    <div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--text)">VOFA TPO Chart</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;
+          color:var(--green);text-transform:uppercase;background:rgba(0,229,160,.08);
+          border:1px solid rgba(0,229,160,.2);padding:4px 10px;border-radius:3px">NinjaTrader 8</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+
+        <!-- TPO 7 days -->
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;overflow:hidden;
+          transition:border-color .2s,transform .2s"
+          onmouseover="this.style.borderColor='rgba(0,229,160,.3)';this.style.transform='translateY(-3px)'"
+          onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+          <div style="height:2px;background:var(--green)"></div>
+          <div style="padding:28px 24px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;
+              color:var(--muted);text-transform:uppercase;margin-bottom:16px">7 Days</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--green);
+              line-height:1;margin-bottom:4px">₹499</div>
+            <div style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;
+              margin-bottom:20px">one-time payment</div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:24px;line-height:1.6">
+              Full access to VOFA TPO Chart for 7 days on one PC.
+            </div>
+            <a href="https://rzp.io/rzp/6PVfGcu" target="_blank"
+              style="display:block;text-align:center;background:var(--green);color:#050a0f;
+              font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;
+              padding:12px;border-radius:4px;text-decoration:none;transition:background .2s"
+              onmouseover="this.style.background='var(--green2)'"
+              onmouseout="this.style.background='var(--green)'">
+              Buy 7-Day Trial →
+            </a>
+          </div>
+        </div>
+
+        <!-- TPO 14 days -->
+        <div style="background:var(--panel);border:2px solid rgba(0,229,160,.4);border-radius:6px;overflow:hidden;
+          transition:border-color .2s,transform .2s;position:relative"
+          onmouseover="this.style.transform='translateY(-3px)'"
+          onmouseout="this.style.transform='none'">
+          <div style="height:2px;background:linear-gradient(90deg,var(--green),var(--gold))"></div>
+          <div style="position:absolute;top:16px;right:16px;background:var(--gold);color:#050a0f;
+            font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+            letter-spacing:1px;padding:3px 8px;border-radius:2px">POPULAR</div>
+          <div style="padding:28px 24px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;
+              color:var(--muted);text-transform:uppercase;margin-bottom:16px">14 Days</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--green);
+              line-height:1;margin-bottom:4px">₹999</div>
+            <div style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;
+              margin-bottom:20px">one-time payment</div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:24px;line-height:1.6">
+              Full access to VOFA TPO Chart for 14 days on one PC.
+            </div>
+            <a href="https://rzp.io/rzp/dxK28U7" target="_blank"
+              style="display:block;text-align:center;background:var(--green);color:#050a0f;
+              font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;
+              padding:12px;border-radius:4px;text-decoration:none;transition:background .2s"
+              onmouseover="this.style.background='var(--green2)'"
+              onmouseout="this.style.background='var(--green)'">
+              Buy 14-Day Trial →
+            </a>
+          </div>
+        </div>
+
+        <!-- TPO 30 days -->
+        <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;overflow:hidden;
+          transition:border-color .2s,transform .2s"
+          onmouseover="this.style.borderColor='rgba(0,229,160,.3)';this.style.transform='translateY(-3px)'"
+          onmouseout="this.style.borderColor='var(--border)';this.style.transform='none'">
+          <div style="height:2px;background:var(--green)"></div>
+          <div style="padding:28px 24px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;
+              color:var(--muted);text-transform:uppercase;margin-bottom:16px">30 Days</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--green);
+              line-height:1;margin-bottom:4px">₹1,999</div>
+            <div style="font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;
+              margin-bottom:20px">one-time payment</div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:24px;line-height:1.6">
+              Full access to VOFA TPO Chart for 30 days on one PC.
+            </div>
+            <a href="https://rzp.io/rzp/DAnqAIAa" target="_blank"
+              style="display:block;text-align:center;background:var(--green);color:#050a0f;
+              font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;
+              padding:12px;border-radius:4px;text-decoration:none;transition:background .2s"
+              onmouseover="this.style.background='var(--green2)'"
+              onmouseout="this.style.background='var(--green)'">
+              Buy 30-Day Trial →
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom note -->
+    <p style="margin-top:40px;font-size:13px;color:var(--muted);text-align:center;
+      font-family:'JetBrains Mono',monospace;letter-spacing:.5px">
+      After payment, your license key is emailed instantly · Works on one PC · 
+      <a href="#free-trial" style="color:var(--green);text-decoration:none">Try free first →</a>
+    </p>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     FIX 3: ADD "Paid Trial" to both nav menus
+
+     Desktop nav <ul>:
+     <li><a href="#paid-trial">Paid Trial</a></li>
+
+     Mobile nav menu:
+     <a href="#paid-trial" onclick="closeMobileMenu()">Paid Trial</a>
+     ============================================================ -->
+
+    <!-- Trust line -->
+    <p style="font-size: 13px; color: #444; text-align: center;">
+      2-day trial · One PC · No credit card · Instant license key via email
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     REPLACE your existing <section id="download"> block with this
+     Everything matches your exact site colors, fonts, and style
+     ============================================================ -->
+
+<!-- ── DOWNLOAD SECTION ─────────────────────────────────────── -->
+<section id="download" style="
+  background: var(--bg2);
+  padding: 100px 60px;
+  border-top: 1px solid var(--border);
+  position: relative; overflow: hidden;
+">
+  <!-- grid bg matching site style -->
+  <div style="position:absolute;inset:0;pointer-events:none;
+    background-image:linear-gradient(rgba(0,229,160,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,160,.03) 1px,transparent 1px);
+    background-size:40px 40px"></div>
+
+  <div style="max-width:1100px;margin:0 auto;position:relative">
+
+    <!-- Header -->
+    <div class="fade-up" style="margin-bottom:64px">
+      <span class="sec-tag">Licensed Users</span>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);
+        letter-spacing:2px;line-height:1;margin-bottom:16px">
+        DOWNLOAD YOUR<br><span style="color:var(--green)">INDICATORS</span>
+      </h2>
+      <p style="color:var(--muted);font-size:16px;line-height:1.7;max-width:520px">
+        Enter your license key to download. Install via NinjaTrader 8 Tools → Import menu, then add to chart and activate.
+      </p>
+    </div>
+
+    <!-- Install steps -->
+    <div class="fade-up" style="display:flex;gap:0;margin-bottom:56px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:12px;padding:18px 28px;
+        background:var(--panel);border:1px solid var(--border);border-radius:4px 0 0 4px">
+        <span style="width:32px;height:32px;background:var(--green);color:#050a0f;
+          border-radius:50%;display:flex;align-items:center;justify-content:center;
+          font-family:'Bebas Neue',sans-serif;font-size:16px;flex-shrink:0">1</span>
+        <span style="font-size:13px;color:var(--muted)">Download <strong style="color:var(--text)">.zip file</strong></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:18px 28px;
+        background:var(--panel);border:1px solid var(--border);border-left:none">
+        <span style="width:32px;height:32px;background:var(--green);color:#050a0f;
+          border-radius:50%;display:flex;align-items:center;justify-content:center;
+          font-family:'Bebas Neue',sans-serif;font-size:16px;flex-shrink:0">2</span>
+        <span style="font-size:13px;color:var(--muted)">Import via <strong style="color:var(--text)">NT8 Tools menu</strong></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:18px 28px;
+        background:var(--panel);border:1px solid var(--border);border-left:none;border-radius:0 4px 4px 0">
+        <span style="width:32px;height:32px;background:var(--green);color:#050a0f;
+          border-radius:50%;display:flex;align-items:center;justify-content:center;
+          font-family:'Bebas Neue',sans-serif;font-size:16px;flex-shrink:0">3</span>
+        <span style="font-size:13px;color:var(--muted)">Add to chart & <strong style="color:var(--text)">enter license key</strong></span>
+      </div>
+    </div>
+
+    <!-- Download Cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px">
+
+      <!-- VSABlueprint Pro -->
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;overflow:hidden;
+        transition:box-shadow .3s,border-color .3s"
+        onmouseover="this.style.borderColor='rgba(0,229,160,.3)';this.style.boxShadow='0 0 0 1px rgba(0,229,160,.1),0 20px 60px rgba(0,0,0,.5)'"
+        onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+        <!-- top accent bar -->
+        <div style="height:2px;background:linear-gradient(90deg,var(--green),var(--gold))"></div>
+        <div style="padding:32px 32px 24px">
+          <div style="font-size:28px;margin-bottom:14px">🔬</div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;
+            color:var(--gold);text-transform:uppercase;display:block;margin-bottom:8px">NinjaTrader 8 · Segment 2</span>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1.5px;margin-bottom:6px">VSABlueprint Pro</h3>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px">
+            Volume Spread Analysis signals, smart money detection, 14 high-probability setups and auto trade labels.
+          </p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:0">
+            <span style="background:rgba(0,229,160,.06);border:1px solid rgba(0,229,160,.18);color:var(--green);
+              padding:4px 10px;border-radius:20px;font-size:10px;font-family:'JetBrains Mono',monospace">NT8</span>
+            <span style="background:rgba(0,229,160,.06);border:1px solid rgba(0,229,160,.18);color:var(--green);
+              padding:4px 10px;border-radius:20px;font-size:10px;font-family:'JetBrains Mono',monospace">232 KB</span>
+            <span style="background:rgba(0,229,160,.06);border:1px solid rgba(0,229,160,.18);color:var(--green);
+              padding:4px 10px;border-radius:20px;font-size:10px;font-family:'JetBrains Mono',monospace">v1.0</span>
+          </div>
+        </div>
+        <!-- License key form -->
+        <div style="padding:20px 32px 28px;border-top:1px solid var(--border);background:rgba(0,0,0,.2)">
+          <label style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;
+            color:var(--muted);text-transform:uppercase;display:block;margin-bottom:8px">License Key</label>
+          <div style="display:flex;gap:10px">
+            <input type="text" id="key-vsa" placeholder="XXXX-XXXX-XXXX-XXXX"
+              style="flex:1;background:var(--bg);border:1px solid var(--border);color:var(--text);
+              padding:11px 14px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px;
+              outline:none;transition:border-color .2s;letter-spacing:1px"
+              onfocus="this.style.borderColor='var(--green)'"
+              onblur="this.style.borderColor='var(--border)'">
+            <button onclick="downloadIndicator('vsa')"
+              style="background:var(--green);color:#050a0f;border:none;padding:11px 20px;
+              border-radius:3px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;
+              cursor:pointer;transition:all .2s;white-space:nowrap;letter-spacing:.5px"
+              onmouseover="this.style.background='var(--green2)';this.style.transform='translateY(-1px)'"
+              onmouseout="this.style.background='var(--green)';this.style.transform='none'">
+              ↓ Download
+            </button>
+          </div>
+          <div id="msg-vsa" style="margin-top:10px;font-size:12px;font-family:'JetBrains Mono',monospace;display:none;letter-spacing:.5px"></div>
+        </div>
+      </div>
+
+      <!-- VOFATPOChart -->
+      <div style="background:var(--panel);border:1px solid var(--border);border-radius:6px;overflow:hidden;
+        transition:box-shadow .3s,border-color .3s"
+        onmouseover="this.style.borderColor='rgba(0,229,160,.3)';this.style.boxShadow='0 0 0 1px rgba(0,229,160,.1),0 20px 60px rgba(0,0,0,.5)'"
+        onmouseout="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
+        <div style="height:2px;background:linear-gradient(90deg,var(--green),var(--gold))"></div>
+        <div style="padding:32px 32px 24px">
+          <div style="font-size:28px;margin-bottom:14px">📊</div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;
+            color:var(--gold);text-transform:uppercase;display:block;margin-bottom:8px">NinjaTrader 8 · Segment 1</span>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1.5px;margin-bottom:6px">VOFA TPO Chart</h3>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px">
+            VSA-colored TPO profiles, POC, VAH, VAL lines, single print detection and multi-session overlay.
+          </p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <span style="background:rgba(0,229,160,.06);border:1px solid rgba(0,229,160,.18);color:var(--green);
+              padding:4px 10px;border-radius:20px;font-size:10px;font-family:'JetBrains Mono',monospace">NT8</span>
+            <span style="background:rgba(0,229,160,.06);border:1px solid rgba(0,229,160,.18);color:var(--green);
+              padding:4px 10px;border-radius:20px;font-size:10px;font-family:'JetBrains Mono',monospace">217 KB</span>
+            <span style="background:rgba(0,229,160,.06);border:1px solid rgba(0,229,160,.18);color:var(--green);
+              padding:4px 10px;border-radius:20px;font-size:10px;font-family:'JetBrains Mono',monospace">v1.0</span>
+          </div>
+        </div>
+        <div style="padding:20px 32px 28px;border-top:1px solid var(--border);background:rgba(0,0,0,.2)">
+          <label style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;
+            color:var(--muted);text-transform:uppercase;display:block;margin-bottom:8px">License Key</label>
+          <div style="display:flex;gap:10px">
+            <input type="text" id="key-vofa" placeholder="XXXX-XXXX-XXXX-XXXX"
+              style="flex:1;background:var(--bg);border:1px solid var(--border);color:var(--text);
+              padding:11px 14px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px;
+              outline:none;transition:border-color .2s;letter-spacing:1px"
+              onfocus="this.style.borderColor='var(--green)'"
+              onblur="this.style.borderColor='var(--border)'">
+            <button onclick="downloadIndicator('vofa')"
+              style="background:var(--green);color:#050a0f;border:none;padding:11px 20px;
+              border-radius:3px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:12px;
+              cursor:pointer;transition:all .2s;white-space:nowrap;letter-spacing:.5px"
+              onmouseover="this.style.background='var(--green2)';this.style.transform='translateY(-1px)'"
+              onmouseout="this.style.background='var(--green)';this.style.transform='none'">
+              ↓ Download
+            </button>
+          </div>
+          <div id="msg-vofa" style="margin-top:10px;font-size:12px;font-family:'JetBrains Mono',monospace;display:none;letter-spacing:.5px"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom note -->
+    <p style="font-size:13px;color:var(--muted);text-align:center;font-family:'JetBrains Mono',monospace;letter-spacing:.5px">
+      No license key yet? 
+      <a href="#free-trial" style="color:var(--green);text-decoration:none;font-weight:600">
+        Get your free 2-day trial →
+      </a>
+    </p>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     ADD THIS SCRIPT just before your closing </body> tag
+     (or merge with your existing <script> block)
+     ============================================================ -->
+<script>
+async function downloadIndicator(type) {
+  const keyEl   = document.getElementById('key-' + type);
+  const msgEl   = document.getElementById('msg-' + type);
+  const key     = keyEl.value.trim();
+
+  const productMap = {
+    vofa: 'VOFATPOChart',
+    vsa:  'VSABlueprintPro'
+  };
+  const downloadMap = {
+    vofa: 'https://paratrade.org/downloads/VOFATPOChart.zip',
+    vsa:  'https://paratrade.org/downloads/VSABlueprintPro.zip'
+  };
+
+  if (!key) {
+    showDlMsg(msgEl, '⚠ Please enter your license key.', '#f5c842');
+    keyEl.focus();
+    return;
+  }
+
+  showDlMsg(msgEl, '⟳ Validating license...', 'var(--muted)');
+
+  try {
+    const res  = await fetch('https://api.paratrade.org/license/validate.php', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ license_key: key, product: productMap[type] })
+    });
+    const data = await res.json();
+
+    if (data.valid) {
+      showDlMsg(msgEl, '✓ License valid — download starting...', 'var(--green)');
+      setTimeout(() => { window.location.href = downloadMap[type]; }, 800);
+    } else {
+      showDlMsg(msgEl, '✗ ' + (data.message || 'Invalid or expired license key.'), 'var(--red)');
+    }
+  } catch (e) {
+    showDlMsg(msgEl, '✗ Could not reach license server. Please try again.', 'var(--red)');
+  }
+}
+
+function showDlMsg(el, text, color) {
+  el.style.color   = color;
+  el.textContent   = text;
+  el.style.display = 'block';
+}
+</script>
+
+<!-- ============================================================
+     ALSO ADD "Download" link to your nav <ul>
+     Paste this alongside your other nav <li> items:
+
+     <li><a href="#download">Download</a></li>
+
+     And in your mobile nav menu too:
+     <a href="#download" onclick="closeMobileMenu()">Download</a>
+     ============================================================ -->
+<!-- ============================================================
+     END OF NEW SECTIONS
+     ============================================================ -->
 <!-- CTA -->
 <section id="cta">
   <div class="fade-up">
@@ -2095,6 +2647,12 @@ function scrollToPricing() {
 
 <script>
 // Mobile hamburger menu
+function closeMobileMenu(){
+  var btn = document.getElementById('nav-hamburger');
+  var menu = document.getElementById('nav-mobile-menu');
+  if(menu) menu.classList.remove('open');
+  if(btn) btn.classList.remove('active');
+}
 (function(){
   var btn = document.getElementById('nav-hamburger');
   var menu = document.getElementById('nav-mobile-menu');
@@ -2106,5 +2664,15 @@ function scrollToPricing() {
   });
   // Close on scroll
   window.addEventListener('scroll', function(){
-    menu.classList.remove('open');
-    btn.cla
+    closeMobileMenu();
+  });
+  // Close on outside click
+  document.addEventListener('click', function(e){
+    if(!menu.contains(e.target) && !btn.contains(e.target)){
+      closeMobileMenu();
+    }
+  });
+})();
+</script>
+</body>
+</html>
