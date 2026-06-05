@@ -2309,18 +2309,19 @@ async function downloadIndicator(type) {
   showDlMsg(msgEl, '⟳ Validating license...', 'var(--muted)');
 
   try {
-    const res  = await fetch('https://api.paratrade.org/license/validate.php', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ license_key: key, product: productMap[type] })
-    });
-    const data = await res.json();
+    const res  = await fetch(url, { method: 'GET' });
+    const text = await res.text();
+    const trimmed = text.trim();
 
-    if (data.valid) {
+    if (trimmed === 'VALID') {
       showDlMsg(msgEl, '✓ License valid — download starting...', 'var(--green)');
       setTimeout(() => { window.location.href = downloadMap[type]; }, 800);
+    } else if (trimmed === 'EXPIRED') {
+      showDlMsg(msgEl, '✗ License expired. Please renew at paratrade.org', 'var(--red)');
+    } else if (trimmed === 'DEVICE_MISMATCH') {
+      showDlMsg(msgEl, '✗ License registered to a different device.', 'var(--red)');
     } else {
-      showDlMsg(msgEl, '✗ ' + (data.message || 'Invalid or expired license key.'), 'var(--red)');
+      showDlMsg(msgEl, '✗ Invalid license key. Please check and try again.', 'var(--red)');
     }
   } catch (e) {
     showDlMsg(msgEl, '✗ Could not reach license server. Please try again.', 'var(--red)');
