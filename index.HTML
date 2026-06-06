@@ -2309,8 +2309,7 @@ async function downloadIndicator(type) {
   showDlMsg(msgEl, '⟳ Validating license...', 'var(--muted)');
 
  try {
-    const url = `https://api.paratrade.org/license/validate.php?key=${encodeURIComponent(key)}&device=${encodeURIComponent(productMap[type])}&product=${encodeURIComponent(type)}`;
-    
+    const url = `https://api.paratrade.org/license/validate.php?key=${encodeURIComponent(key)}&device=web&product=${encodeURIComponent(type)}`;
     // First validate, then download
     const res = await fetch(url, { method: 'GET' });
     
