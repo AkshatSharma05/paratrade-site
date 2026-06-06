@@ -2309,6 +2309,9 @@ async function downloadIndicator(type) {
   showDlMsg(msgEl, '⟳ Validating license...', 'var(--muted)');
 
   try {
+    // ✅ THIS LINE WAS MISSING:
+    const url = `https://api.paratrade.org/license/validate.php?key=${encodeURIComponent(key)}&device=${encodeURIComponent(productMap[type])}`;
+
     const res  = await fetch(url, { method: 'GET' });
     const text = await res.text();
     const trimmed = text.trim();
@@ -2325,6 +2328,7 @@ async function downloadIndicator(type) {
     }
   } catch (e) {
     showDlMsg(msgEl, '✗ Could not reach license server. Please try again.', 'var(--red)');
+    console.error('License error:', e); // Check browser console for details
   }
 }
 
