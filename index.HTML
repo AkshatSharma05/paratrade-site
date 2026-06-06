@@ -2310,7 +2310,7 @@ async function downloadIndicator(type) {
 
   try {
     // ✅ THIS LINE WAS MISSING:
-    const url = `https://api.paratrade.org/license/validate.php?key=${encodeURIComponent(key)}&device=${encodeURIComponent(productMap[type])}`;
+    const url = `https://api.paratrade.org/license/validate.php?key=${encodeURIComponent(key)}&device=${encodeURIComponent(productMap[type])}&product=${encodeURIComponent(type)}`;
 
     const res  = await fetch(url, { method: 'GET' });
     const text = await res.text();
